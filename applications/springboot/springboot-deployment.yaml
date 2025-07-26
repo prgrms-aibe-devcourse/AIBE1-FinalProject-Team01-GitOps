@@ -44,7 +44,7 @@ spec:
           httpGet:
             path: /actuator/health
             port: 8080
-          initialDelaySeconds: 30
+          initialDelaySeconds: 60
           periodSeconds: 10
       initContainers:
       - name: wait-for-mysql
