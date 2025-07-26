@@ -39,8 +39,6 @@ spec:
             secretKeyRef:
               name: mysql-secret
               key: MYSQL_DATABASE
-        - name: MYSQL_ALLOW_EMPTY_PASSWORD
-          value: "no"
         ports:
         - containerPort: 3306
           name: mysql
@@ -56,18 +54,6 @@ spec:
           limits:
             memory: "1Gi"
             cpu: "500m"
-        livenessProbe:
-          tcpSocket:
-            port: 3306
-          initialDelaySeconds: 30
-          periodSeconds: 10
-          timeoutSeconds: 5
-        readinessProbe:
-          tcpSocket:
-            port: 3306
-          initialDelaySeconds: 5
-          periodSeconds: 5
-          timeoutSeconds: 1
       volumes:
       - name: mysql-master-storage
         persistentVolumeClaim:

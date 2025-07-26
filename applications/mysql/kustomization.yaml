@@ -5,4 +5,3 @@ namespace: amateurs
 
 resources:
   - master
-  - slave
