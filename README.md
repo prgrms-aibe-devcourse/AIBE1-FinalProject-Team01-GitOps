@@ -71,17 +71,17 @@ AIBE1-FinalProject-Team01-GitOps/
 │   ├── namespace.yaml                 # amateurs 네임스페이스
 │   ├── mysql/
 │   │   ├── master/
+│   │   │   ├── mysql-master-config.yaml
 │   │   │   ├── mysql-master-pvc.yaml
 │   │   │   ├── mysql-master-statefulset.yaml
 │   │   │   ├── mysql-master-service.yaml
 │   │   │   └── kustomization.yaml
 │   │   ├── slave/
+│   │   │   ├── mysql-slave-config.yaml
 │   │   │   ├── mysql-slave-pvc.yaml
 │   │   │   ├── mysql-slave-statefulset.yaml
 │   │   │   ├── mysql-slave-service.yaml
 │   │   │   └── kustomization.yaml
-│   │   ├── mysql-master-configmap.yaml
-│   │   ├── mysql-slave-configmap.yaml
 │   │   └── kustomization.yaml
 │   ├── redis/
 │   │   ├── redis-deployment.yaml      # 인메모리 캐시
@@ -90,7 +90,6 @@ AIBE1-FinalProject-Team01-GitOps/
 │   ├── springboot/
 │   │   ├── springboot-deployment.yaml
 │   │   ├── springboot-service.yaml
-│   │   ├── springboot-config.yaml     # 애플리케이션 설정
 │   │   └── kustomization.yaml
 │   └── kustomization.yaml
 └── kustomization.yaml                 # 루트 Kustomize
@@ -168,7 +167,7 @@ EOF
 - **Nginx Ingress Controller**: HTTP/HTTPS 라우팅
 - **Cert-Manager**: SSL 인증서 관리
 
-## 🔐 민감정보 설정
+## 🔐 환경변수 설정
 
 GitOps 보안을 위해 다음 파일들은 서버에서 직접 생성해야 합니다:
 
