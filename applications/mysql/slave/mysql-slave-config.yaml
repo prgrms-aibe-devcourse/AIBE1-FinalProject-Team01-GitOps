@@ -6,19 +6,18 @@ metadata:
 data:
   my.cnf: |
     [mysqld]
-    default_authentication_plugin=mysql_native_password
+    authentication_policy=mysql_native_password
     bind-address=0.0.0.0
     server-id=2
     log-bin=mysql-bin
-    binlog-format=ROW
     gtid-mode=ON
     enforce-gtid-consistency=ON
-    log-slave-updates=ON
+    log_replica_updates=ON
     read-only=ON
     super-read-only=ON
     relay-log=mysql-relay-bin
     max_connections=200
     innodb_buffer_pool_size=512M
-    innodb_log_file_size=256M
+    innodb_redo_log_capacity=536870912
     character-set-server=utf8mb4
     collation-server=utf8mb4_unicode_ci
