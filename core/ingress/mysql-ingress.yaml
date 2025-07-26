@@ -4,7 +4,7 @@ metadata:
   name: tcp-services
   namespace: ingress-nginx
 data:
-  3306: "amateurs/mysql-external:3306"
+  "3306": "amateurs/mysql-external:3306"
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
