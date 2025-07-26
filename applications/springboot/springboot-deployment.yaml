@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: amateurs
+  namespace: amateurs
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: amateurs
+  template:
+    metadata:
+      labels:
+        app: amateurs
+    spec:
+      containers:
+      - name: amateurs
+        image: ghcr.io/prgrms-aibe-devcourse/aibe1-finalproject-team01-be:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: JAVA_TOOL_OPTIONS
+          value: "-Xmx1500m -Xms512m"
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"
+        envFrom:
+          - secretRef:
+              name: springboot-secret
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/config
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+      volumes:
+      - name: config-volume
+        configMap:
+          name: springboot-config
+      initContainers:
+      - name: wait-for-mysql
+        image: busybox:latest
+        command: ['sh', '-c', 'until nc -z mysql 3306; do echo waiting for mysql; sleep 5; done;']
+      - name: wait-for-redis
+        image: busybox:latest
+        command: ['sh', '-c', 'until nc -z redis 6379; do echo waiting for redis; sleep 5; done;']

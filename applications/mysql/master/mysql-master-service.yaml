@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: amateurs
+spec:
+  selector:
+    role: master
+  ports:
+  - port: 3306
+    targetPort: 3306
+    name: mysql
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-master
+  namespace: amateurs
+spec:
+  selector:
+    app: mysql-master
+  ports:
+  - port: 3306
+    targetPort: 3306
+    name: mysql
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-master-headless
+  namespace: amateurs
+spec:
+  selector:
+    app: mysql-master
+  ports:
+  - port: 3306
+    targetPort: 3306
+    name: mysql
+  clusterIP: None
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-external
+  namespace: amateurs
+spec:
+  selector:
+    role: master
+  ports:
+  - port: 3306
+    targetPort: 3306
+    nodePort: 30306
+    name: mysql
+  type: NodePort
