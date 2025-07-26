@@ -39,6 +39,8 @@ spec:
             secretKeyRef:
               name: mysql-secret
               key: MYSQL_DATABASE
+        - name: MYSQL_ALLOW_EMPTY_PASSWORD
+          value: "no"
         ports:
         - containerPort: 3306
           name: mysql
