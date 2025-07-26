@@ -98,20 +98,20 @@ AIBE1-FinalProject-Team01-GitOps/
 
 ## 🚀 배포된 서비스
 
-### SpringBoot 애플리케이션
+### SpringBoot
 - **이미지**: `ghcr.io/prgrms-aibe-devcourse/aibe1-finalproject-team01-be:latest`
 - **리소스**: 2 replicas, 1-2Gi 메모리
 
-### MySQL Master-Slave 클러스터
-- **Master**: 
+### MySQL
+- **Master** 
   - 읽기/쓰기 담당
   - GTID 기반 복제 설정
-- **Slave**: 
+- **Slave - 추가 예정** 
   - 읽기 전용
   - 자동 복제 동기화
 - **스토리지**: 각각 20Gi bulk-hdd PVC
 
-### Redis Cache
+### Redis
 - **용도**: 캐시, 토큰 스토어
 - **설정**: 인메모리 전용 (영속성 없음)
 - **메모리**: 128MB 데이터, 256MB 컨테이너 제한
