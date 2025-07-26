@@ -4,7 +4,6 @@ metadata:
   name: amateurs
   namespace: amateurs
 spec:
-  sessionAffinity: ClientIP
   selector:
     app: amateurs
   ports:

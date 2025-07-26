@@ -8,6 +8,9 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "amateurs-sticky"
+    nginx.ingress.kubernetes.io/session-cookie-expires: "86400"
 
 spec:
   ingressClassName: nginx
