@@ -26,9 +26,6 @@ spec:
         envFrom:
           - secretRef:
               name: springboot-secret
-        volumeMounts:
-        - name: config-volume
-          mountPath: /app/config
         resources:
           requests:
             memory: "1Gi"
@@ -47,10 +44,6 @@ spec:
             port: 8080
           initialDelaySeconds: 30
           periodSeconds: 10
-      volumes:
-      - name: config-volume
-        configMap:
-          name: springboot-config
       initContainers:
       - name: wait-for-mysql
         image: busybox:latest
