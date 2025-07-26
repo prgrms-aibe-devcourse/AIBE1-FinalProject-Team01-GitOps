@@ -13,6 +13,8 @@ spec:
       labels:
         app: amateurs
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
       - name: amateurs
         image: ghcr.io/prgrms-aibe-devcourse/aibe1-finalproject-team01-be:latest
