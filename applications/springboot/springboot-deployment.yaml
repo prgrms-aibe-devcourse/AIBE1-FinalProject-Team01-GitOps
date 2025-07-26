@@ -40,12 +40,16 @@ spec:
             port: 8080
           initialDelaySeconds: 60
           periodSeconds: 30
+          timeoutSeconds: 15
+          failureThreshold: 5
         readinessProbe:
           httpGet:
             path: /actuator/health
             port: 8080
           initialDelaySeconds: 60
-          periodSeconds: 10
+          periodSeconds: 15
+          timeoutSeconds: 15
+          failureThreshold: 5
       initContainers:
       - name: wait-for-mysql
         image: busybox:latest
