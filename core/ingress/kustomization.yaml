@@ -3,4 +3,3 @@ kind: Kustomization
 
 resources:
   - amateurs-ingress.yaml
-  - mysql-ingress.yaml
